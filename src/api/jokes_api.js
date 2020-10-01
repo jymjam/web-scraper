@@ -1,8 +1,7 @@
 const { Router } = require('express')
-
-// const jokesJson = require('./jokes.json') 
-let resObj = {}
 const scraper = require('./scraper')
+
+let resObj = {}
 scraper().then(data => resObj = data);
 
 const router = Router()
