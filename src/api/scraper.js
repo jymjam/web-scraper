@@ -21,19 +21,19 @@ async function scrapingJokes() {
     href_url = `https://old.reddit.com/r/Jokes/${$body.attr('href').slice(9)}`
     hrefArray.push(href_url)
   })
-  
+
   jokesArray = []
   // getting each joke 
-  for (urls of hrefArray.slice(-5)) {
-    jokesArray.push(await getJokes(urls)) 
+  for (url of hrefArray.slice(-5)) {
+    jokesArray.push(await getJokes(url)) 
   }
   return jokesArray
 }
 
 // promise 
-async function getJokes(urls) {
+async function getJokes(url) {
   jokeJson = {}
-  let { data } = await axios.get(urls)
+  let { data } = await axios.get(url)
   let $ = cheerio.load(data)
 
   jokeJson.title = $('a.title').text()
